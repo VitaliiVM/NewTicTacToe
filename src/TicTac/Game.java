@@ -36,11 +36,12 @@ public class Game {
         System.out.println("Игра началась!!!");
         System.out.println();
 
-        for (int win = 0; win <=3 ; win++){
+        for (int win = 0; win <= 3 ; win++){
             showGameField();
             firstPlayer();
             showGameField();
             secondPlayer();
+            draw();
 
         }
 
@@ -103,6 +104,18 @@ public class Game {
 
             }
 
+            int counterDiagonal = 1;
+            for (int i = 0; i < gameField.length - 1; i++) {
+                if (gameField[i][i] == gameField[i + 1][i + 1]) {
+                    counterDiagonal++;
+                }
+                if (counterDiagonal == gameField.length) {
+                    System.out.println(firstPlayer + "WINNER!!!!!!DIAGONAL");
+                }
+            }
+            
+
+
             first = true;
         }while(!first);
 
@@ -162,6 +175,16 @@ public class Game {
 
             }
 
+            int counterDiagonal = 1;
+            for (int i = 0; i < gameField.length - 1; i++) {
+                if (gameField[i][i] == gameField[i + 1][i + 1]) {
+                    counterDiagonal++;
+                }
+                if (counterDiagonal == gameField.length) {
+                    System.out.println(secondPlayer + " " + "WINNER!!!!!!DIAGONAL");
+                }
+            }
+
             second = true;
         }while(!second);
 
@@ -170,12 +193,14 @@ public class Game {
     public  static  boolean draw () throws IOException {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
-                if (gameField[i][j] != "X" || gameField[i][j] != "O") {
+                if ((gameField[i][j] != "")) {
                     return false;
                 }
             }
+            System.out.println("DRAW");
         }
             return true;
+
 
     }
 
